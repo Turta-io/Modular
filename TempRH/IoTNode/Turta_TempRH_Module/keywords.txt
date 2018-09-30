@@ -1,0 +1,4 @@
+Turta_TempRH_Module	KEYWORD1
+begin	KEYWORD2
+readTemperature	KEYWORD2
+readHumidity   KEYWORD2

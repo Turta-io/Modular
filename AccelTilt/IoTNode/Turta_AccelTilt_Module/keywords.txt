@@ -1,0 +1,7 @@
+Turta_AccelTilt_Module	KEYWORD1
+begin	KEYWORD2
+readXAxis	KEYWORD2
+readYAxis   KEYWORD2
+readZAxis	KEYWORD2
+readXYZAxis KEYWORD2
+readTiltState   KEYWORD2

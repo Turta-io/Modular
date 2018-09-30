@@ -1,0 +1,1 @@
+Copy included folder into your Arduino Libraries folder. Then go to "File > Examples > Examples from Custom Libraries" menu to use the jump-start code.

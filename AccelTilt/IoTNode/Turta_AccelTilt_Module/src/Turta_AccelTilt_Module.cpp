@@ -38,9 +38,9 @@ double Turta_AccelTilt_Module::readXAxis() {
   digitalWrite(EN_PIN, HIGH);
   delay(1);
 
-  while ((Turta_AccelTilt_Module::i2CReadOneByte(MMA8491Q_I2C_ADDRESS, MMA8491Q_STATUS) & 0x01) != 0x01)
+  while ((Turta_AccelTilt_Module::i2CReadOneByte(MMA8491Q_STATUS) & 0x01) != 0x01)
     delay(1);
-  int tempData = Turta_AccelTilt_Module::i2CReadTwoBytesAsIntRS2B(MMA8491Q_I2C_ADDRESS, MMA8491Q_OUT_X_MSB);
+  int tempData = Turta_AccelTilt_Module::i2CReadTwoBytesAsIntRS2B(MMA8491Q_OUT_X_MSB);
   digitalWrite(EN_PIN, LOW);
 
   return Turta_AccelTilt_Module::convertToG(tempData);
@@ -50,9 +50,9 @@ double Turta_AccelTilt_Module::readYAxis() {
   digitalWrite(EN_PIN, HIGH);
   delay(1);
 
-  while ((Turta_AccelTilt_Module::i2CReadOneByte(MMA8491Q_I2C_ADDRESS, MMA8491Q_STATUS) & 0x02) != 0x02)
+  while ((Turta_AccelTilt_Module::i2CReadOneByte(MMA8491Q_STATUS) & 0x02) != 0x02)
     delay(1);
-  int tempData = Turta_AccelTilt_Module::i2CReadTwoBytesAsIntRS2B(MMA8491Q_I2C_ADDRESS, MMA8491Q_OUT_Y_MSB);
+  int tempData = Turta_AccelTilt_Module::i2CReadTwoBytesAsIntRS2B(MMA8491Q_OUT_Y_MSB);
   digitalWrite(EN_PIN, LOW);
 
   return Turta_AccelTilt_Module::convertToG(tempData);
@@ -62,9 +62,9 @@ double Turta_AccelTilt_Module::readZAxis() {
   digitalWrite(EN_PIN, HIGH);
   delay(1);
 
-  while ((Turta_AccelTilt_Module::i2CReadOneByte(MMA8491Q_I2C_ADDRESS, MMA8491Q_STATUS) & 0x04) != 0x04)
+  while ((Turta_AccelTilt_Module::i2CReadOneByte(MMA8491Q_STATUS) & 0x04) != 0x04)
     delay(1);
-  int tempData = Turta_AccelTilt_Module::i2CReadTwoBytesAsIntRS2B(MMA8491Q_I2C_ADDRESS, MMA8491Q_OUT_Z_MSB);
+  int tempData = Turta_AccelTilt_Module::i2CReadTwoBytesAsIntRS2B(MMA8491Q_OUT_Z_MSB);
   digitalWrite(EN_PIN, LOW);
 
   return Turta_AccelTilt_Module::convertToG(tempData);
@@ -75,10 +75,10 @@ void Turta_AccelTilt_Module::readXYZAxis(double & x, double & y, double & z) {
 
   digitalWrite(EN_PIN, HIGH);
   delay(1);
-  while ((Turta_AccelTilt_Module::i2CReadOneByte(MMA8491Q_I2C_ADDRESS, MMA8491Q_STATUS) & 0x08) != 0x08)
+  while ((Turta_AccelTilt_Module::i2CReadOneByte(MMA8491Q_STATUS) & 0x08) != 0x08)
     delay(1);
 
-  Turta_AccelTilt_Module::i2CReadMultipleBytes(MMA8491Q_I2C_ADDRESS, MMA8491Q_OUT_X_MSB, 6, bfr);
+  Turta_AccelTilt_Module::i2CReadMultipleBytes(MMA8491Q_OUT_X_MSB, 6, bfr);
   digitalWrite(EN_PIN, LOW);
 
   x = Turta_AccelTilt_Module::convertToG((bfr[0] << 6) + (bfr[1] >> 2));
@@ -90,7 +90,7 @@ void Turta_AccelTilt_Module::readTiltState(bool & x, bool & y, bool & z) {
   digitalWrite(EN_PIN, HIGH);
   delay(1);
 
-  while ((Turta_AccelTilt_Module::i2CReadOneByte(MMA8491Q_I2C_ADDRESS, MMA8491Q_STATUS) & 0x08) != 0x08)
+  while ((Turta_AccelTilt_Module::i2CReadOneByte(MMA8491Q_STATUS) & 0x08) != 0x08)
     delay(1);
   x = (digitalRead(INTX_PIN) == HIGH) ? false : true;
   y = (digitalRead(INTY_PIN) == HIGH) ? false : true;
@@ -99,43 +99,43 @@ void Turta_AccelTilt_Module::readTiltState(bool & x, bool & y, bool & z) {
 }
 
 // I2C Communication
-void Turta_AccelTilt_Module::i2CWriteOneByte(byte addr, byte reg, byte data) {
-  Wire.beginTransmission((byte)addr);
-  Wire.write((byte)reg);
+void Turta_AccelTilt_Module::i2CWriteOneByte(byte reg, byte data) {
+  Wire.beginTransmission((uint8_t)MMA8491Q_I2C_ADDRESS);
+  Wire.write((uint8_t)reg);
   Wire.write(data);
   Wire.endTransmission();
 }
 
-byte Turta_AccelTilt_Module::i2CReadOneByte(byte addr, byte reg) {
+byte Turta_AccelTilt_Module::i2CReadOneByte(byte reg) {
   byte data;
-  Wire.beginTransmission((byte)addr);
-  Wire.write((byte)reg);
+  Wire.beginTransmission((uint8_t)MMA8491Q_I2C_ADDRESS);
+  Wire.write((uint8_t)reg);
   Wire.endTransmission(false);
-  Wire.requestFrom((byte)addr, 1);
+  Wire.requestFrom((uint8_t)MMA8491Q_I2C_ADDRESS, (uint8_t)1);
   data = Wire.read();
   Wire.endTransmission();
   return data;
 }
 
-int Turta_AccelTilt_Module::i2CReadTwoBytesAsIntRS2B(byte addr, byte reg) {
+int Turta_AccelTilt_Module::i2CReadTwoBytesAsIntRS2B(byte reg) {
   int i = 0;
   byte data[2] = {0};
-  Wire.beginTransmission((byte)addr);
-  Wire.write((byte)reg);
+  Wire.beginTransmission((uint8_t)MMA8491Q_I2C_ADDRESS);
+  Wire.write((uint8_t)reg);
   Wire.endTransmission(false);
-  Wire.requestFrom((byte)addr, 2);
+  Wire.requestFrom((uint8_t)MMA8491Q_I2C_ADDRESS, (uint8_t)2);
   while (Wire.available())
     data[i++] = Wire.read();
   Wire.endTransmission();
   return (data[0] << 6) + (data[1] >> 2);
 }
 
-void Turta_AccelTilt_Module::i2CReadMultipleBytes(byte addr, byte reg, short len, byte *data) {
+void Turta_AccelTilt_Module::i2CReadMultipleBytes(byte reg, short len, byte *data) {
   short i = 0;
-  Wire.beginTransmission((byte)addr);
-  Wire.write((byte)reg);
+  Wire.beginTransmission((uint8_t)MMA8491Q_I2C_ADDRESS);
+  Wire.write((uint8_t)reg);
   Wire.endTransmission(false);
-  Wire.requestFrom((byte)addr, 8);
+  Wire.requestFrom((uint8_t)MMA8491Q_I2C_ADDRESS, (uint8_t)8);
   while (Wire.available())
     data[i++] = Wire.read();
   Wire.endTransmission();

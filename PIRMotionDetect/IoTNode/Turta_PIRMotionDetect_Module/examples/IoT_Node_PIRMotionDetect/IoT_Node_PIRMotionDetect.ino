@@ -22,7 +22,7 @@ void setup() {
 
 void loop() {
   // Read PIR state.
-  motionDetected = pir.pirRead();
+  motionDetected = pir.readMotionState();
 
   // On motion detected / no motion.
   if (oldMotionState != motionDetected) {

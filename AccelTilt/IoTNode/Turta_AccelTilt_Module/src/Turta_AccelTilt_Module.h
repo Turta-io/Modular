@@ -30,10 +30,10 @@ class Turta_AccelTilt_Module
     void readTiltState(bool & x, bool & y, bool & z);
   private:
     double convertToG(int analog_data);
-    void i2CWriteOneByte(byte addr, byte reg, byte data);
-    byte i2CReadOneByte(byte addr, byte reg);
-    int i2CReadTwoBytesAsIntRS2B(byte addr, byte reg);
-    void i2CReadMultipleBytes(byte addr, byte reg, short len, byte *data);
+    void i2CWriteOneByte(byte reg, byte data);
+    byte i2CReadOneByte(byte reg);
+    int i2CReadTwoBytesAsIntRS2B(byte reg);
+    void i2CReadMultipleBytes(byte reg, short len, byte *data);
 };
 
 #endif

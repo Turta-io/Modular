@@ -73,10 +73,10 @@ class Turta_ALSGesture_Module
     short readProximity();
   private:
     void config();
-    void i2CWriteOneByte(byte addr, byte reg, byte data);
-    byte i2CReadOneByte(byte addr, byte reg);
-    int i2CReadTwoBytesAsInt(byte addr, byte reg);
-    void i2CReadMultipleBytes(byte addr, byte reg, short len, byte *data);
+    void i2CWriteOneByte(byte reg, byte data);
+    byte i2CReadOneByte(byte reg);
+    int i2CReadTwoBytesAsInt(byte reg);
+    void i2CReadMultipleBytes(byte reg, short len, byte *data);
 };
 
 #endif

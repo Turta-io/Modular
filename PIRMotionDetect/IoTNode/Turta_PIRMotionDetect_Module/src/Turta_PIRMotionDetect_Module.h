@@ -15,7 +15,7 @@ class Turta_PIRMotionDetect_Module
   public:
     Turta_PIRMotionDetect_Module();
     void begin();
-    bool pirRead();
+    bool readMotionState();
 };
 
 #endif

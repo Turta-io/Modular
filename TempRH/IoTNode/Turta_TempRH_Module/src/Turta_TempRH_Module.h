@@ -49,9 +49,9 @@ class Turta_TempRH_Module
     double readHumidity();
   private:
     void config();
-    void i2CWriteOneByte(byte addr, byte reg, byte data);
-    byte i2CReadOneByte(byte addr, byte reg);
-    void i2CReadMultipleBytes(byte addr, byte reg, short len, byte *data);
+    void i2CWriteOneByte(byte reg, byte data);
+    byte i2CReadOneByte(byte reg);
+    void i2CReadMultipleBytes(byte reg, short len, byte *data);
 };
 
 #endif

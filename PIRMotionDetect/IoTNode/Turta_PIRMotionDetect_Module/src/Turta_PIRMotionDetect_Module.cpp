@@ -16,7 +16,7 @@ void Turta_PIRMotionDetect_Module::begin() {
   pinMode(INT_PIN, INPUT);
 }
 
-bool Turta_PIRMotionDetect_Module::pirRead() {
+bool Turta_PIRMotionDetect_Module::readMotionState() {
   bool result;
   result = digitalRead(INT_PIN);
   return result;

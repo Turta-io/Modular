@@ -1,0 +1,4 @@
+Turta Photocoupler Module	KEYWORD1
+begin	KEYWORD2
+input1Read  KEYWORD2
+input2Read  KEYWORD2

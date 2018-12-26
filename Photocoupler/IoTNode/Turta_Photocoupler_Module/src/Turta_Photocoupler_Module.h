@@ -15,8 +15,7 @@ class Turta_Photocoupler_Module
   public:
     Turta_Photocoupler_Module();
     void begin();
-    bool input1Read();
-    bool input2Read();
+    bool readInput(uint8_t ch);
 };
 
 #endif

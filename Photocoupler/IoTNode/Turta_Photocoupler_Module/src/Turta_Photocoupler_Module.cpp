@@ -18,14 +18,13 @@ void Turta_Photocoupler_Module::begin() {
   pinMode(INPUT2_PIN, INPUT);
 }
 
-bool Turta_Photocoupler_Module::input1Read() {
-  bool result;
-  result = digitalRead(INPUT1_PIN);
-  return result;
-}
-
-bool Turta_Photocoupler_Module::input2Read() {
-  bool result;
-  result = digitalRead(INPUT2_PIN);
-  return result;
+bool Turta_Photocoupler_Module::readInput(uint8_t ch) {
+  switch(ch) {
+    case 1:
+      return digitalRead(INPUT1_PIN);
+    case 2:
+      return digitalRead(INPUT2_PIN);
+    default:
+      return false;
+  }
 }

@@ -24,8 +24,8 @@ void setup() {
 
 void loop() {
   // Read input states.
-  input1State = pc.input1Read();
-  input2State = pc.input2Read();
+  input1State = pc.readInput(1);
+  input2State = pc.readInput(2);
 
   if (input1State || input2State) {
     digitalWrite(LED, HIGH);

@@ -22,7 +22,7 @@ void setup() {
 
 void loop() {
   // Read button state.
-  buttonPressed = bb.buttonRead();
+  buttonPressed = bb.readButton();
 
   // On button pressed / released.
   if (oldButtonState != buttonPressed) {

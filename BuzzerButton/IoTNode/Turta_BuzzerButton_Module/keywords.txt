@@ -1,6 +1,6 @@
 Turta_BuzzerButton_Module	KEYWORD1
 begin	KEYWORD2
-buttonRead	KEYWORD2
+readButton  KEYWORD2
 buzzerTone  KEYWORD2
 buzzerStop  KEYWORD2
 buzzerTonePeriod    KEYWORD2

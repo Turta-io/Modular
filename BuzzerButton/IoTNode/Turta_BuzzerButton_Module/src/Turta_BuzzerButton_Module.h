@@ -15,7 +15,7 @@ class Turta_BuzzerButton_Module
   public:
     Turta_BuzzerButton_Module();
     void begin();
-    bool buttonRead();
+    bool readButton();
     void buzzerTone(int frequency, short dutyCycle);
     void buzzerStop();
     void buzzerTonePeriod(int frequency, short dutyCycle, int durationMs);

@@ -20,7 +20,7 @@ void Turta_BuzzerButton_Module::begin() {
   ledcAttachPin(PWM_PIN, 15);
 }
 
-bool Turta_BuzzerButton_Module::buttonRead() {
+bool Turta_BuzzerButton_Module::readButton() {
   bool result;
   result = !digitalRead(INT_PIN);
   return result;

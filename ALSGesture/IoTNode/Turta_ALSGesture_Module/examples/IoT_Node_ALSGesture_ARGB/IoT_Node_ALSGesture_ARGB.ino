@@ -31,11 +31,6 @@ void loop() {
   Serial.print(", B: ");
   Serial.println(b);
   
-  // Read proximity.
-  short resultP = als.readProximity();
-  Serial.print("Proximity: ");
-  Serial.println(resultP);
-
   // Print an empty line.
   Serial.println("");
 

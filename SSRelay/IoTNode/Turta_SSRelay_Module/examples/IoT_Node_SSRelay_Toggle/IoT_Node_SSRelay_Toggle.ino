@@ -14,15 +14,15 @@ void setup() {
 
 void loop() {
   // Read relay state.
-  bool relayState = ssr.relayRead();
+  bool relayState = ssr.readRelay();
 
   // Toggle relay.
-  ssr.relayWrite(!relayState);
+  ssr.writeRelay(!relayState);
 
   // Write relay state to serial monitor.
-  Serial.print("Relay state: ");
-  Serial.println(ssr.relayRead() ? "On." : "Off.");
+  Serial.print("Relay State: ");
+  Serial.println(ssr.readRelay() ? "On." : "Off.");
   
-  // Delay 10000ms = 10 seconds.
+  // Delay 10.000ms = 10 seconds.
   delay(10000);
 }

@@ -16,11 +16,11 @@ void Turta_SSRelay_Module::begin() {
   pinMode(RELAY_PIN, OUTPUT);
 }
 
-void Turta_SSRelay_Module::relayWrite(bool state) {
+void Turta_SSRelay_Module::writeRelay(bool state) {
   digitalWrite(RELAY_PIN, state);
 }
 
-bool Turta_SSRelay_Module::relayRead() {
+bool Turta_SSRelay_Module::readRelay() {
   bool result;
   result = digitalRead(RELAY_PIN);
   return result;

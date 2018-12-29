@@ -15,8 +15,8 @@ class Turta_SSRelay_Module
   public:
     Turta_SSRelay_Module();
     void begin();
-    void relayWrite(bool state);
-    bool relayRead();
+    void writeRelay(bool state);
+    bool readRelay();
 };
 
 #endif

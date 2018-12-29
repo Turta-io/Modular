@@ -1,4 +1,4 @@
 Turta_SSRelay_Module	KEYWORD1
 begin	KEYWORD2
-relayWrite	KEYWORD2
-relayRead	KEYWORD2
+writeRelay  KEYWORD2
+readRelay   KEYWORD2

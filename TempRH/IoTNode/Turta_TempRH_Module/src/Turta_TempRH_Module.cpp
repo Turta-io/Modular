@@ -101,14 +101,3 @@ byte Turta_TempRH_Module::i2CReadOneByte(byte reg) {
   Wire.endTransmission();
   return data;
 }
-
-void Turta_TempRH_Module::i2CReadMultipleBytes(byte reg, short len, byte *data) {
-  short i = 0;
-  Wire.beginTransmission((uint8_t)HTS221_I2C_ADDRESS);
-  Wire.write((uint8_t)reg);
-  Wire.endTransmission(false);
-  Wire.requestFrom((uint8_t)HTS221_I2C_ADDRESS, (uint8_t)8);
-  while (Wire.available())
-    data[i++] = Wire.read();
-  Wire.endTransmission();
-}

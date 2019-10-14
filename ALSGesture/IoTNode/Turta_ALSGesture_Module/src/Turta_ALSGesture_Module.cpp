@@ -116,7 +116,7 @@ void Turta_ALSGesture_Module::i2CReadMultipleBytes(byte reg, short len, byte *da
   Wire.beginTransmission((uint8_t)APDS9960_I2C_ADDRESS);
   Wire.write((uint8_t)reg);
   Wire.endTransmission(false);
-  Wire.requestFrom((uint8_t)APDS9960_I2C_ADDRESS, (uint8_t)8);
+  Wire.requestFrom((uint8_t)APDS9960_I2C_ADDRESS, (uint8_t)len);
   while (Wire.available())
     data[i++] = Wire.read();
   Wire.endTransmission();

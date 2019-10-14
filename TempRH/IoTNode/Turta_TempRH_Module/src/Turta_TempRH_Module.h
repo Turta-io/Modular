@@ -51,7 +51,6 @@ class Turta_TempRH_Module
     void config();
     void i2CWriteOneByte(byte reg, byte data);
     byte i2CReadOneByte(byte reg);
-    void i2CReadMultipleBytes(byte reg, short len, byte *data);
 };
 
 #endif
